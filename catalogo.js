@@ -1050,6 +1050,7 @@ function actualizarCarrito() {
     }
 }
 
+
 function enviarPedido(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -1068,6 +1069,23 @@ function enviarPedido(e) {
         msg += `*💰 PRODUCTOS EN CUP*\n`;
         cupItems.forEach(i => {
             msg += `• ${i.nombre} x${i.cantidad} - ${i.precioTexto}\n`;
+            
+            // ✅ PERSONALIZACIÓN
+            if (i.personalizacion && i.personalizacion !== "No aplica") {
+                msg += `  🔹 *Personalización:* ${i.personalizacion}\n`;
+            }
+            
+            // ✅ FECHA Y HORA
+            if (i.fechaEntrega && i.horaEntrega) {
+                msg += `  📅 *Fecha:* ${i.fechaEntrega}\n`;
+                msg += `  ⏰ *Hora:* ${i.horaEntrega}\n`;
+            }
+            
+            // ✅ GANACHE
+            if (i.tieneGanache) {
+                msg += `  🍫 *Con ganache de chocolate*\n`;
+            }
+            
             if (i.requiereAnticipo) msg += `  ✨ Requiere 30% anticipo\n`;
         });
         msg += '\n';
@@ -1077,11 +1095,29 @@ function enviarPedido(e) {
         msg += `*💵 PRODUCTOS EN USD*\n`;
         usdItems.forEach(i => {
             msg += `• ${i.nombre} x${i.cantidad} - ${i.precioTexto}\n`;
+            
+            // ✅ PERSONALIZACIÓN
+            if (i.personalizacion && i.personalizacion !== "No aplica") {
+                msg += `  🔹 *Personalización:* ${i.personalizacion}\n`;
+            }
+            
+            // ✅ FECHA Y HORA
+            if (i.fechaEntrega && i.horaEntrega) {
+                msg += `  📅 *Fecha:* ${i.fechaEntrega}\n`;
+                msg += `  ⏰ *Hora:* ${i.horaEntrega}\n`;
+            }
+            
+            // ✅ GANACHE
+            if (i.tieneGanache) {
+                msg += `  🍫 *Con ganache de chocolate*\n`;
+            }
+            
             if (i.requiereAnticipo) msg += `  ✨ Requiere 30% anticipo\n`;
         });
         msg += '\n';
     }
     
+    // Calcular totales
     let totalCUP = 0;
     let totalUSD = 0;
     let anticipoCUP = 0;
