@@ -1,0 +1,1617 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo · Cerchio di Cioccolato</title>
+    
+    <meta name="description" content="Catálogo de productos Cerchio di Cioccolato. Tartas personalizadas, mesas de dulces, postres finos y más.">
+    <meta name="author" content="Cerchio di Cioccolato">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .catalogo-header {
+            background: #2b1b10;
+            background-image: 
+                url('data:image/svg+xml;utf8,<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="6" fill="rgba(230,180,120,0.15)"/><circle cx="60" cy="30" r="10" fill="rgba(230,180,120,0.1)"/><circle cx="40" cy="60" r="8" fill="rgba(230,180,120,0.12)"/><circle cx="15" cy="65" r="5" fill="rgba(230,180,120,0.1)"/><circle cx="70" cy="70" r="7" fill="rgba(230,180,120,0.08)"/></svg>'),
+                radial-gradient(ellipse at 30% 40%, #8b6f4a 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 60%, #5a3f28 0%, transparent 70%),
+                linear-gradient(145deg, #1f130b 0%, #4f3523 100%);
+            background-size: 200px 200px, cover, cover, cover;
+            padding: 0;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .catalogo-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(92, 62, 46, 0.3), rgba(166, 123, 91, 0.3));
+            z-index: 1;
+        }
+
+        .catalogo-header .container {
+            position: relative;
+            z-index: 2;
+            padding: 140px 0 60px;
+            text-align: center;
+            color: white;
+        }
+
+        .badge-dorado {
+            display: inline-block;
+            background: rgba(198, 161, 91, 0.15);
+            backdrop-filter: blur(5px);
+            padding: 5px 18px;
+            border-radius: 40px;
+            color: white;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .fino {
+            font-weight: 300;
+            font-style: italic;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .filtros-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filtro-btn {
+            padding: 12px 28px;
+            border: 2px solid var(--dorado);
+            background: transparent;
+            color: var(--chocolate);
+            border-radius: 40px;
+            font-family: var(--font-cuerpo);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filtro-btn:hover,
+        .filtro-btn.active {
+            background: var(--dorado);
+            color: white;
+        }
+        
+        .subcategorias-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0 30px;
+            flex-wrap: wrap;
+            padding: 10px;
+            background: rgba(198, 161, 91, 0.1);
+            border-radius: 50px;
+        }
+        
+        .subcategoria-btn {
+            padding: 8px 18px;
+            border: 1px solid var(--dorado);
+            background: transparent;
+            color: var(--chocolate);
+            border-radius: 30px;
+            font-family: var(--font-cuerpo);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .subcategoria-btn:hover,
+        .subcategoria-btn.active {
+            background: var(--dorado);
+            color: white;
+        }
+        
+        .categoria-actual {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: var(--font-titulos);
+            font-size: 1.5rem;
+            color: var(--chocolate);
+        }
+        
+        .categoria-actual span {
+            color: var(--dorado);
+            font-weight: 700;
+        }
+
+        .frase-duo {
+            text-align: center;
+            margin: 20px 0 30px;
+            padding: 15px 20px;
+            background: transparent;
+            border: none;
+            position: relative;
+        }
+
+        .frase-duo p {
+            margin: 5px 0;
+        }
+
+        .frase-duo .italiano {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--chocolate);
+            line-height: 1.3;
+        }
+
+        .frase-duo .espanol {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: var(--dorado);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .frase-duo .destacado .italiano {
+            font-size: 1.8rem;
+            color: var(--dorado);
+        }
+
+        .frase-duo .destacado .espanol {
+            font-size: 1rem;
+            color: var(--chocolate);
+            font-weight: 600;
+            text-transform: none;
+        }
+
+        .frase-duo::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--dorado), transparent);
+            margin: 15px auto 0;
+        }
+        
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .producto-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(198, 161, 91, 0.2);
+        }
+        
+        .producto-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(92, 62, 46, 0.2);
+            border-color: var(--dorado);
+        }
+        
+        .producto-imagen {
+            height: 250px;
+            background: var(--gris);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--chocolate-claro);
+            background-size: contain !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+        }
+        
+        .producto-info {
+            padding: 20px;
+        }
+        
+        .producto-nombre {
+            font-family: var(--font-titulos);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--chocolate);
+        }
+        
+        .producto-detalles {
+            color: var(--texto);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .producto-precio {
+            font-size: 1.6rem;
+            font-family: var(--font-titulos);
+            color: var(--dorado);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .producto-precio-usd {
+            font-size: 1.6rem;
+            font-family: var(--font-titulos);
+            color: #27ae60;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .producto-precio-usd::before {
+            content: "$";
+            font-size: 1rem;
+            vertical-align: super;
+        }
+        
+        .producto-nota {
+            font-size: 0.8rem;
+            color: var(--chocolate-claro);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .producto-sin-personalizar {
+            display: inline-block;
+            background: rgba(198, 161, 91, 0.15);
+            color: var(--chocolate);
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 40px;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        
+        .producto-sin-personalizar::before {
+            content: "✨";
+            margin-right: 5px;
+        }
+        
+        .btn-interes {
+            width: 100%;
+            padding: 12px;
+            background: var(--chocolate);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-interes:hover {
+            background: var(--dorado);
+        }
+        
+        .btn-interes::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        .btn-interes:active::after {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .btn-volver-minimal {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+            color: var(--chocolate);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            margin: 20px 0 30px 20px;
+            position: relative;
+        }
+
+        .btn-volver-minimal::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--dorado);
+            transition: width 0.3s ease;
+        }
+
+        .btn-volver-minimal:hover::after {
+            width: 100%;
+        }
+
+        .btn-volver-minimal:hover i {
+            transform: translateX(-5px);
+        }
+
+        .btn-volver-minimal i {
+            transition: transform 0.3s ease;
+        }
+        
+        .cart-container {
+            display: inline-block;
+            margin-top: 30px;
+        }
+        
+        .cart-btn-header {
+            background: var(--chocolate);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid var(--dorado);
+        }
+        
+        .cart-badge-header {
+            background: var(--dorado);
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-left: 5px;
+        }
+        
+        body.carrito-abierto {
+            overflow: hidden !important;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cart-panel {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            width: 380px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+            border: 1px solid var(--dorado);
+            animation: slideIn 0.3s ease;
+            flex-direction: column;
+        }
+
+        .cart-panel.active {
+            display: flex;
+        }
+
+        .cart-panel-header {
+            background: var(--chocolate);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 15px 15px 0 0;
+            flex-shrink: 0;
+        }
+
+        .cart-panel-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-panel-body {
+            max-height: 300px;
+            overflow-y: auto !important;
+            overflow-x: hidden;
+            padding: 15px;
+            flex: 1 1 auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--dorado) var(--gris);
+        }
+
+        .cart-panel-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .cart-panel-body::-webkit-scrollbar-track {
+            background: var(--gris);
+            border-radius: 10px;
+        }
+
+        .cart-panel-body::-webkit-scrollbar-thumb {
+            background: var(--dorado);
+            border-radius: 10px;
+        }
+
+        .cart-panel-body::-webkit-scrollbar-thumb:hover {
+            background: var(--chocolate);
+        }
+
+        .cart-panel-empty {
+            text-align: center;
+            padding: 30px;
+            color: var(--chocolate-claro);
+        }
+
+        .cart-panel-empty i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .cart-panel-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .cart-panel-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-panel-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .cart-panel-item div:first-child {
+            flex: 1;
+            min-width: 0;
+            padding-right: 10px;
+        }
+
+        .cart-panel-item div:first-child strong {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .cart-panel-qty-btn {
+            width: 25px;
+            height: 25px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .cart-panel-qty-btn:hover {
+            transform: scale(1.1);
+            background: var(--dorado);
+            color: white;
+            border-color: var(--dorado);
+        }
+
+        .cart-panel-qty-btn.remove {
+            border: none;
+            color: #999;
+        }
+
+        .cart-panel-qty-btn.remove:hover {
+            background: #ff4444;
+            color: white;
+        }
+
+        .cart-panel-footer {
+            padding: 15px;
+            background: #f9f9f9;
+            border-top: 1px solid #eee;
+            border-radius: 0 0 15px 15px;
+            flex-shrink: 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.03);
+        }
+
+        .cart-panel-total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .cart-panel-total-row:last-of-type {
+            margin-bottom: 15px;
+        }
+
+        .cart-panel-total-row.total-cup {
+            font-weight: bold;
+            color: var(--chocolate);
+            font-size: 1.1rem;
+            border-top: 1px solid #ddd;
+            padding-top: 8px;
+            margin-top: 8px;
+        }
+
+        .cart-panel-total-row.total-usd {
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 1.1rem;
+        }
+
+        .cart-panel-btn {
+            width: 100%;
+            padding: 12px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cart-panel-btn:hover {
+            background: #128C7E;
+        }
+        
+        .cart-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--chocolate);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 20px rgba(92, 62, 46, 0.4);
+            z-index: 999;
+            text-decoration: none;
+            border: 2px solid var(--dorado);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .cart-float:hover {
+            transform: scale(1.15) rotate(5deg);
+            background: var(--dorado);
+            border-color: var(--chocolate);
+        }
+        
+        .cart-float:hover i {
+            color: var(--chocolate);
+        }
+        
+        .cart-float-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--dorado);
+            color: var(--chocolate);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            border: 2px solid white;
+        }
+
+        .modal-personalizar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-personalizar.active {
+            display: flex;
+        }
+
+        .modal-contenido {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: modalFadeIn 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--chocolate), var(--chocolate-claro));
+            color: white;
+            padding: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+
+        .modal-header p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .modal-body {
+            padding: 25px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .modal-footer {
+            padding: 20px;
+            display: flex;
+            gap: 10px;
+            border-top: 1px solid #eee;
+            flex-shrink: 0;
+        }
+
+        .btn-cancelar {
+            flex: 1;
+            padding: 12px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cancelar:hover {
+            background: #ff4444;
+            color: white;
+        }
+
+        .btn-confirmar {
+            flex: 2;
+            padding: 12px;
+            background: var(--chocolate);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-confirmar:hover {
+            background: var(--dorado);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-grupo {
+            flex: 1;
+            margin-bottom: 15px;
+        }
+
+        .form-grupo label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: var(--chocolate);
+            font-weight: 500;
+        }
+
+        .form-grupo input,
+        .form-grupo textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            box-sizing: border-box;
+        }
+
+        .form-grupo input:focus,
+        .form-grupo textarea:focus {
+            outline: none;
+            border-color: var(--dorado);
+            box-shadow: 0 0 0 3px rgba(198, 161, 91, 0.1);
+        }
+
+        .form-nota {
+            background: #f9f5f0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
+            border-left: 4px solid var(--dorado);
+        }
+
+        .form-nota i {
+            color: var(--dorado);
+            margin-right: 5px;
+        }
+
+        .filtro-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filtro-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .filtro-btn:hover::before {
+            left: 100%;
+        }
+
+        .categoria-actual span {
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .categoria-actual span::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--dorado);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .categoria-actual span:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .catalogo-header .container {
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .filtros-container::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--dorado), transparent);
+            margin: 20px auto 0;
+        }
+
+        .cart-panel-body {
+            max-height: 300px;
+            overflow-y: auto !important;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: var(--dorado) var(--gris);
+        }
+
+        .cart-panel-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .cart-panel-body::-webkit-scrollbar-track {
+            background: var(--gris);
+            border-radius: 10px;
+        }
+
+        .cart-panel-body::-webkit-scrollbar-thumb {
+            background: var(--dorado);
+            border-radius: 10px;
+        }
+
+        .cart-panel-body::-webkit-scrollbar-thumb:hover {
+            background: var(--chocolate);
+        }
+
+        .cart-panel-footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            background: #f9f9f9;
+            border-top: 1px solid #eee;
+            z-index: 2;
+        }
+
+        .btn-inspirarme {
+            background: var(--dorado);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin: 10px 0;
+            font-size: 1rem;
+            border: 2px solid transparent;
+        }
+
+        .btn-inspirarme:hover {
+            background: var(--chocolate);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-color: var(--dorado);
+        }
+
+        .btn-inspirarme i {
+            margin-right: 8px;
+        }
+
+        #inspiracionExtra {
+            background: linear-gradient(135deg, rgba(198, 161, 91, 0.1), rgba(92, 62, 46, 0.05));
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px dashed var(--dorado);
+            animation: fadeIn 0.5s ease;
+        }
+
+        #inspiracionExtra h4 {
+            color: var(--chocolate);
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-aclaraciones-responsive {
+            width: auto;
+            max-width: 90%;
+            background: transparent;
+            border: 2px solid var(--dorado);
+            color: var(--chocolate);
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: clamp(0.85rem, 4vw, 0.95rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 0 auto;
+            white-space: normal;
+            word-break: break-word;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .btn-aclaraciones-responsive i:first-child {
+            flex-shrink: 0;
+        }
+
+        .btn-aclaraciones-responsive span {
+            flex: 1;
+            text-align: center;
+        }
+
+        .btn-aclaraciones-responsive i:last-child {
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-aclaraciones-responsive.active i:last-child {
+            transform: rotate(180deg);
+        }
+
+        .btn-aclaraciones-responsive:hover {
+            background: var(--dorado);
+            color: white;
+        }
+
+        .aclaraciones-contenido-responsive {
+            width: 100%;
+            max-width: 100%;
+            margin: 20px auto;
+            padding: 20px 15px;
+            background: #fdf9f5;
+            border-radius: 20px;
+            border-left: 4px solid var(--dorado);
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        .aclaracion-card-responsive {
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            padding: 18px 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            box-sizing: border-box;
+            overflow-x: hidden;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: none;
+        }
+
+        .aclaracion-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed rgba(198, 161, 91, 0.3);
+            padding-bottom: 8px;
+        }
+
+        .aclaracion-header i {
+            font-size: 1.2rem;
+            color: var(--dorado);
+            width: 24px;
+            flex-shrink: 0;
+        }
+
+        .aclaracion-header h3 {
+            color: var(--chocolate);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin: 0;
+            flex: 1;
+            word-break: keep-all;
+        }
+
+        .aclaracion-card-responsive ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .aclaracion-card-responsive li {
+            margin-bottom: 12px;
+            color: #4a4a4a;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            display: flex;
+            gap: 8px;
+            word-break: keep-all;
+            word-wrap: normal;
+            overflow-wrap: normal;
+            hyphens: none;
+        }
+
+        .aclaracion-card-responsive li:last-child {
+            margin-bottom: 0;
+        }
+
+        .aclaracion-card-responsive li strong {
+            color: var(--chocolate);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .aclaracion-card-responsive li .texto-largo {
+            white-space: normal;
+            word-break: keep-all;
+        }
+
+        .bullet {
+            color: var(--dorado);
+            font-weight: bold;
+            flex-shrink: 0;
+            width: 20px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .importante {
+            background: rgba(198, 161, 91, 0.08);
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin: 8px 0;
+            font-weight: 500;
+        }
+
+        .importante .bullet {
+            color: #C6A15B;
+        }
+
+        .nota {
+            background: rgba(92, 62, 46, 0.03);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .contacto-card {
+            border-left: 3px solid var(--dorado);
+            background: #faf5f0;
+        }
+
+        .badge-dorado {
+            display: inline-block;
+            background: rgba(198, 161, 91, 0.15);
+            padding: 5px 15px;
+            border-radius: 40px;
+            color: var(--chocolate);
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(198, 161, 91, 0.3);
+        }
+
+        .aclaracion-contenido {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .aclaracion-contenido p {
+            margin: 0;
+            color: #4a4a4a;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            display: block;
+        }
+
+        .aclaracion-contenido .label {
+            font-weight: 600;
+            color: var(--chocolate);
+            display: inline-block;
+            min-width: 140px;
+            margin-right: 8px;
+        }
+
+        .importante {
+            background: rgba(198, 161, 91, 0.08);
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin: 5px 0;
+        }
+
+        .nota {
+            background: rgba(92, 62, 46, 0.03);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        @keyframes destacado {
+            0% { background: #fdf9f5; }
+            50% { background: rgba(198, 161, 91, 0.2); box-shadow: 0 0 20px rgba(198, 161, 91, 0.5); }
+            100% { background: #fdf9f5; }
+        }
+
+        #aclaraciones-section.destacado-activo {
+            animation: destacado 2s ease;
+            border-radius: 20px;
+        }
+
+        .info-flotante {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--chocolate);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(198, 161, 91, 0.4);
+            z-index: 99;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .info-flotante:hover {
+            transform: scale(1.1);
+            background: var(--chocolate);
+        }
+
+        @media (max-width: 768px) {
+            .cart-panel-body {
+                max-height: 250px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .productos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .productos-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .catalogo-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .frase-principal .italiano {
+                font-size: 1.5rem;
+            }
+            
+            .frase-principal .espanol {
+                font-size: 1rem;
+            }
+            
+            .frase-secundaria .italiano {
+                font-size: 1.2rem;
+            }
+            
+            .cart-panel {
+                width: 90%;
+                right: 5%;
+                left: 5%;
+                bottom: 80px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .modal-contenido {
+                width: 95%;
+                max-height: 85vh;
+            }
+            
+            .modal-body {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .aclaracion-contenido .label {
+                display: block;
+                margin-bottom: 3px;
+                min-width: auto;
+            }
+            
+            .aclaracion-contenido p {
+                margin-bottom: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn-aclaraciones-responsive {
+                width: 100%;
+                max-width: 100%;
+                padding: 12px 15px;
+            }
+            
+            .aclaraciones-contenido-responsive {
+                padding: 15px 12px;
+            }
+            
+            .aclaracion-header h3 {
+                font-size: 1rem;
+            }
+            
+            .aclaracion-card-responsive li {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-contact">
+                    <span><i class="fab fa-whatsapp"></i> <a href="https://wa.me/5356552059">+53 5 6552059</a></span>
+                    <span><i class="far fa-clock"></i> Lun-Vie 9:00-18:00</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Holguín, Cuba</span>
+                </div>
+                <div class="header-social">
+                    <a href="https://www.facebook.com/buttercioccolato" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/cerchio_di_cioccolato" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/5356552059" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="index.html" class="logo">
+                    <div class="logo-circle">
+                        <img src="logo.webp" alt="Cerchio di Cioccolato" style="width:100%; height:100%; border-radius:50%;">
+                    </div>
+                    <div class="logo-text">
+                        <h1>Cerchio<span>di</span>Cioccolato</h1>
+                        <p>Dulcería Gourmet</p>
+                    </div>
+                </a>
+                
+                <div class="nav-right">
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link">Inicio</a></li>
+                        <li><a href="index.html#historia" class="nav-link">Historia</a></li>
+                        <li><a href="index.html#galeria" class="nav-link">Galería</a></li>
+                        <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+                    </ul>
+                    
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="catalogo-header">
+        <div class="container">
+            <span class="badge-dorado">✨ Edición especial ✨</span>
+            <h1>Catálogo <span class="fino">Gourmet</span></h1>
+            <p class="header-descripcion">Explora, elige y déjate conquistar por nuestras creaciones</p>
+            
+            <div class="cart-container">
+                <a href="#" class="cart-btn-header" id="cartToggleBtn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Mi selección</span>
+                    <span class="cart-badge-header" id="cartBadgeHeader">0</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <a href="index.html" class="btn-volver-minimal">
+            <i class="fas fa-arrow-left"></i>
+            <span>Volver</span>
+        </a>
+
+        <div class="frase-duo">
+            <p>
+                <span class="italiano">"Il piacere che meriti"</span><br>
+                <span class="espanol">El placer que mereces</span>
+            </p>
+            <p style="margin-top: 5px; color: var(--chocolate-claro); font-style: italic; font-size: 0.85rem;">
+                (il peccato più dolce)
+            </p>
+            <div class="destacado" style="margin-top: 15px;">
+                <p class="italiano">"Lasciati conquistare"</p>
+                <p class="espanol">✨ Déjate conquistar</p>
+            </div>
+        </div>
+
+        <div class="filtros-container">
+            <button class="filtro-btn active" data-categoria="todos">Todos</button>
+            <button class="filtro-btn" data-categoria="tartas-clasicas">Tartas Clásicas</button>
+            <button class="filtro-btn" data-categoria="tartas-mousse">Tartas Mousse</button>
+            <button class="filtro-btn" data-categoria="personalizados" id="personalizadosBtn">Personalizados</button>
+            <button class="filtro-btn" data-categoria="dulces">Dulces</button>
+            <button class="filtro-btn" data-categoria="mesas">Mesas de Dulces</button>
+        </div>
+
+        <div class="subcategorias-container" id="subcategoriasContainer" style="display: none;">
+            <button class="subcategoria-btn active" data-subcategoria="todos-personalizados">Todos</button>
+            <button class="subcategoria-btn" data-subcategoria="1piso">1 Piso</button>
+            <button class="subcategoria-btn" data-subcategoria="2pisos">2 Pisos</button>
+            <button class="subcategoria-btn" data-subcategoria="3pisos">3 Pisos</button>
+            <button class="subcategoria-btn" data-subcategoria="4pisos">4 Pisos</button>
+            <button class="subcategoria-btn" data-subcategoria="5pisos">5 Pisos</button>
+            <button class="subcategoria-btn" data-subcategoria="6pisos">6 Pisos</button>
+            <button class="subcategoria-btn" data-subcategoria="fondant">Fondant</button>
+        </div>
+
+        <div class="categoria-actual" id="categoriaActual">
+            Mostrando: <span>Todos los productos</span>
+        </div>
+
+        <div id="productosContainer"></div>
+    </div>
+
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-panel-header">
+            <h3><i class="fas fa-shopping-bag"></i> Mi Selección</h3>
+            <button class="cart-panel-close" id="cartPanelClose">&times;</button>
+        </div>
+        <div class="cart-panel-body" id="cartPanelBody">
+            <div class="cart-panel-empty" id="cartPanelEmpty">
+                <i class="fas fa-shopping-basket"></i>
+                <p>Tu pedido está vacío</p>
+                <p style="font-size: 0.9rem;">Selecciona tus productos favoritos</p>
+            </div>
+            <div id="cartPanelItems" style="display: none;"></div>
+        </div>
+        <div class="cart-panel-footer" id="cartPanelFooter" style="display: none;"></div>
+    </div>
+
+    <a href="#" class="cart-float" id="cartFloatBtn">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-float-badge" id="cartFloatBadge">0</span>
+    </a>
+
+    <div class="modal-personalizar" id="modalPersonalizar">
+        <div class="modal-contenido">
+            <div class="modal-header">
+                <h3 id="modalTitulo">✨ Cuéntanos tu sueño</h3>
+                <p id="modalSubtitulo">Personaliza tu pedido</p>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer">
+                <button class="btn-cancelar" id="btnCancelarModal">Cancelar</button>
+                <button class="btn-confirmar" id="btnConfirmarModal">Agregar al carrito</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="aclaraciones-section" class="container" style="margin-top: 60px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <button id="btnAclaraciones" class="btn-aclaraciones-responsive">
+                <i class="fas fa-info-circle"></i> 
+                <span>Aclaraciones importantes antes de reservar</span>
+                <i class="fas fa-chevron-down" id="flechaAclaraciones"></i>
+            </button>
+        </div>
+        
+        <div id="contenidoAclaraciones" class="aclaraciones-contenido-responsive" style="display: none;">
+            <div style="text-align: center; margin-bottom: 25px;">
+                <span class="badge-dorado">📋 Lea atentamente. Si tiene dudas, consúltenos.</span>
+            </div>
+            
+            <div class="aclaracion-card-responsive">
+                <div class="aclaracion-header">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>📅 Sobre reservas y fechas</h3>
+                </div>
+                <div class="aclaracion-contenido">
+                    <p><span class="label">Disponibilidad:</span> confirme antes de acordar una oferta.</p>
+                    <p><span class="label">Apertura de agenda:</span> el día 1 de cada mes abrimos reservas para el mes siguiente (ej. 1 de mayo para junio).</p>
+                    <p><span class="label">Cambios:</span> evite modificar fechas, lugares u horarios acordados. Si es necesario, avísenos rápido.</p>
+                    <p><span class="label">Modificaciones:</span> hasta 15 días antes de la entrega.</p>
+                    <p><span class="label">Posponer reserva:</span> por causa grave puede posponer (el anticipo no se devuelve).</p>
+                </div>
+            </div>
+            
+            <div class="aclaracion-card-responsive">
+                <div class="aclaracion-header">
+                    <i class="fas fa-coins"></i>
+                    <h3>💰 Sobre pagos</h3>
+                </div>
+                <div class="aclaracion-contenido">
+                    <p><span class="label">Anticipo (reserva):</span> hasta 1 mes antes (se descuenta del total).</p>
+                    <p class="importante"><span class="label">⚠️ Importante:</span> si no deposita el anticipo 10 días antes, no se realiza.</p>
+                    <p><span class="label">Forma de pago:</span> anticipo en efectivo o transferencia. Resto en efectivo el día de la entrega.</p>
+                </div>
+            </div>
+            
+            <div class="aclaracion-card-responsive">
+                <div class="aclaracion-header">
+                    <i class="fas fa-cake-candles"></i>
+                    <h3>🎂 Sobre productos y ofertas</h3>
+                </div>
+                <div class="aclaracion-contenido">
+                    <p><span class="label">Ofertas:</span> paquetes con cake y mesa de dulces con la temática que elija.</p>
+                    <p><span class="label">Sabores:</span> masa vainilla + relleno a elegir (vainilla o chocolate). Otros sabores tienen costo adicional.</p>
+                    <p><span class="label">Dulces de la mesa:</span> los elegimos nosotros según el paquete, pero puede indicar preferencias.</p>
+                    <p><span class="label">Dulces por docena:</span> no incluyen montaje ni personalización (costo extra).</p>
+                </div>
+            </div>
+            
+            <div class="aclaracion-card-responsive">
+                <div class="aclaracion-header">
+                    <i class="fas fa-truck"></i>
+                    <h3>🚚 Sobre entregas</h3>
+                </div>
+                <div class="aclaracion-contenido">
+                    <p><span class="label">Horario de entrega:</span> después de las 12:30 p. m.</p>
+                    <p><span class="label">Para eventos:</span> recomendamos después de las 2:00 p. m.</p>
+                    <p><span class="label">Nota:</span> sin entregas en la mañana.</p>
+                    <p><span class="label">Transporte:</span> no nos responsabilizamos si el cliente realiza el traslado.</p>
+                </div>
+            </div>
+            
+            <div class="aclaracion-card-responsive contacto-card">
+                <div class="aclaracion-header">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>📞 Contacto y confirmación</h3>
+                </div>
+                <div class="aclaracion-contenido">
+                    <p><span class="label">Día antes:</span> nos pondremos en contacto para confirmar detalles.</p>
+                    <p class="nota"><span class="label">📱 Nota:</span> si no le llamamos, escríbanos o llámenos para verificar.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0 10px;">
+                <p style="color: var(--chocolate); font-style: italic; font-size: 0.9rem;">
+                    <i class="fas fa-heart" style="color: var(--dorado);"></i>
+                    Gracias por confiar en Cerchio di Cioccolato
+                    <i class="fas fa-heart" style="color: var(--dorado);"></i>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <a href="#aclaraciones-section" class="info-flotante" title="Ver aclaraciones importantes">
+        <i class="fas fa-info-circle"></i>
+    </a>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="footer-logo-circle">
+                        <img src="logo.webp" alt="Cerchio di Cioccolato" class="footer-logo-img">
+                    </div>
+                    <div>
+                        <h3>Cerchio di Cioccolato</h3>
+                        <p>Dulcería Gourmet</p>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/buttercioccolato" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/cerchio_di_cioccolato" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/5356552059" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Cerchio di Cioccolato - Hacemos tu dulce sueño realidad</p>
+                <p>Holguín, Cuba</p>
+            </div>
+            
+            <div class="creditos-profesionales">
+                <div class="container">
+                    <div class="creditos-contenido">
+                        <span class="creditos-texto">
+                            Página creada por &nbsp;
+                            <a href="https://sromlet.github.io" target="_blank" class="creditos-link">
+                                <span class="sr"> SR</span>omlet
+                            </a>
+                        </span>
+                        <span class="creditos-separador"></span>
+                        <span class="creditos-frase">Diseñando vitrinas virtuales para sabores inolvidables</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="catalogo.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnAclaraciones = document.getElementById('btnAclaraciones');
+            
+            if (btnAclaraciones) {
+                btnAclaraciones.addEventListener('click', function() {
+                    const contenido = document.getElementById('contenidoAclaraciones');
+                    const flecha = document.getElementById('flechaAclaraciones');
+                    
+                    if (contenido.style.display === 'none' || contenido.style.display === '') {
+                        contenido.style.display = 'block';
+                        this.classList.add('active');
+                        
+                        setTimeout(() => {
+                            contenido.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 100);
+                    } else {
+                        contenido.style.display = 'none';
+                        this.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.hash === '#aclaraciones-section') {
+                const seccion = document.getElementById('aclaraciones-section');
+                const contenidoAclaraciones = document.getElementById('contenidoAclaraciones');
+                
+                if (seccion && contenidoAclaraciones) {
+                    contenidoAclaraciones.style.display = 'block';
+                    
+                    const btn = document.getElementById('btnAclaraciones');
+                    if (btn) btn.classList.add('active');
+                    
+                    seccion.classList.add('destacado-activo');
+                    
+                    setTimeout(() => {
+                        seccion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                    
+                    setTimeout(() => {
+                        seccion.classList.remove('destacado-activo');
+                    }, 3000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

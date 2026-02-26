@@ -1,0 +1,6 @@
+﻿# Permite a todos los bots acceder al sitio
+User-agent: *
+Allow: /
+
+# Especifica la ubicación del sitemap
+Sitemap: https://cerchiodicioccolato.github.io/sitemap.xml

@@ -1,0 +1,525 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cerchio di Cioccolato · Dulcería Gourmet Holguín</title>
+    
+    <meta name="description" content="Repostería para eventos en Holguín. Tartas mousse, postres personalizados, bodas y quinceañeras. Arte que se saborea.">
+    <meta name="keywords" content="repostería Holguín, tartas personalizadas, postres para eventos, cakes de boda, quinceañera, cerchio di cioccolato">
+    <meta name="author" content="Cerchio di Cioccolato • Desarrollo Web por SRomlet">
+    <meta name="google-site-verification" content="W5LDSgKRz74MSukrp3AnNf2ydzTXPYPkTjWvNYttF7A" />
+
+    <meta property="og:title" content="Cerchio di Cioccolato · Dulcería Gourmet">
+    <meta property="og:description" content="Arte que se saborea. Tartas mousse y postres personalizados en Holguín.">
+    <meta property="og:image" content="https://cerchiodicioccolato.github.io/logo.webp">
+    <meta property="og:url" content="https://cerchiodicioccolato.github.io">
+    <meta property="og:type" content="website">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <meta name="theme-color" content="#5C3E2E">
+    <meta name="msapplication-navbutton-color" content="#5C3E2E">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#5C3E2E">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="preloader" id="preloader">
+        <div class="preloader-contenido">
+            <div class="preloader-circulo">
+                <div class="logo-circle">
+                    <img src="logo.webp" alt="Cerchio di Cioccolato" class="logo-img"> 
+                </div>
+            </div>
+            <div class="preloader-texto">
+                <h3>Cerchio di Cioccolato</h3>
+                <p>Cargando dulces momentos...</p>
+            </div>
+            <div class="preloader-barra">
+                <div class="preloader-progreso" id="preloader-progreso"></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header" id="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-contact">
+                    <span><i class="fab fa-whatsapp"></i> <a href="https://wa.me/5356552059">+53 5 6552059</a></span>
+                    <span><i class="far fa-clock"></i> Lun-Vie 9:00-18:00</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Holguín, Cuba</span>
+                </div>
+                <div class="header-social">
+                    <a href="https://www.facebook.com/buttercioccolato" class="social-link" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/cerchio_di_cioccolato" class="social-link" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/5356552059" class="social-link" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="#inicio" class="logo">
+                    <div class="logo-circle">
+                        <img src="logo.webp" alt="Cerchio di Cioccolato" class="logo-img"> 
+                    </div>
+                    <div class="logo-text">
+                        <h1>Cerchio<span>di</span>Cioccolato</h1>
+                        <p>Dulcería Gourmet</p>
+                    </div>
+                </a>
+                <div class="nav-right">
+                    <ul class="nav-menu">
+                        <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                        <li><a href="#historia" class="nav-link">Historia</a></li>
+                        <li><a href="#galeria" class="nav-link">Galería</a></li>
+                        <li><a href="catalogo.html" class="nav-link catalogo-link">Catálogo</a></li>
+                        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                    </ul>
+                    
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-background">
+            <div class="hero-slide active" style="background-image: url('cumpleanos.webp');">
+                <div class="hero-overlay"></div>
+                <div class="slide-caption">
+                    <span class="caption-categoria">CUMPLEAÑOS</span>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: url('quince.webp');">
+                <div class="hero-overlay"></div>
+                <div class="slide-caption">
+                    <span class="caption-categoria">QUINCEAÑERA</span>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: url('boda.webp');">
+                <div class="hero-overlay"></div>
+                <div class="slide-caption">
+                    <span class="caption-categoria">BODA</span>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: url('personalizados.webp');">
+                <div class="hero-overlay"></div>
+                <div class="slide-caption">
+                    <span class="caption-categoria">PERSONALIZADOS</span>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: url('exoticos.webp');">
+                <div class="hero-overlay"></div>
+                <div class="slide-caption">
+                    <span class="caption-categoria">CAKES EXÓTICOS</span>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: url('gender-reveal.webp');">
+                <div class="hero-overlay"></div>
+                <div class="slide-caption">
+                    <span class="caption-categoria">GENDER REVEAL</span>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: url('mesa.webp');">
+                <div class="hero-overlay"></div>
+                <div class="slide-caption">
+                    <span class="caption-categoria">MESA DE DULCES</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-star"></i> Repostería para Eventos
+            </div>
+            <h1 class="hero-title">
+                <span class="hero-title-main">Cerchio di Cioccolato</span>
+                <span class="hero-title-sub">Arte que se saborea</span>
+            </h1>
+            <p class="hero-description">
+                Creamos experiencias dulces y memorables para tus momentos especiales
+            </p>
+            <div class="hero-buttons">
+                <a href="catalogo.html" class="btn btn-primary" target="_blank">
+                    <i class="fas fa-book-open"></i> Ver catálogo
+                </a>
+                <a href="#inspirame" class="btn btn-outline">
+                    <i class="fas fa-magic"></i> Inspírame
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-indicators">
+            <span class="indicator active"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+        </div>
+
+        <div class="hero-scroll">
+            <a href="#historia" class="scroll-down">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <section class="featured-quote">
+        <div class="container">
+            <div class="quote">
+                "La repostería es el arte de hacer comestible lo que el alma imagina, y el corazón desea."
+                <div class="quote-author">— Cerchio di Cioccolato</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="vangogh-section">
+        <div class="container">
+            <div class="vangogh-grid">
+                <div class="vangogh-image">
+                    <img src="pastel.webp" alt="Pastel estilo Van Gogh">
+                </div>
+                <div class="vangogh-content">
+                    <h2><i class="fas fa-paint-brush"></i> El cielo estrellado</h2>
+                    <div class="vangogh-story">
+                        "Como Van Gogh pintaba con el alma, nosotros horneamos con el corazón. La gente dice que tenemos un don divino... tal vez sea cierto, tal vez sea <strong>amor</strong>."
+                    </div>
+                    <div class="vangogh-quote">
+                        <i class="fas fa-quote-left"></i> El arte no siempre necesita un museo, a veces solo necesita un corazón dispuesto a saborearlo.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="inspirate-section">
+        <div class="container">
+            <div class="inspirate-card">
+                <div class="inspirate-contenido">
+                    <span class="inspirate-badge">✨ NUEVO ✨</span>
+                    <h2>¿Buscas <span class="destacar">ideas</span>?</h2>
+                    <p>Hemos preparado un catálogo con todas nuestras creaciones para que encuentres la inspiración que necesitas.</p>
+                    <div class="inspirate-caracteristicas">
+                        <span><i class="fas fa-check-circle"></i> Tartas clásicas</span>
+                        <span><i class="fas fa-check-circle"></i> Mousses</span>
+                        <span><i class="fas fa-check-circle"></i> Personalizados</span>
+                        <span><i class="fas fa-check-circle"></i> Mesas de dulces</span>
+                    </div>
+                    <a href="catalogo.html" class="btn-inspirate">
+                        <i class="fas fa-magic"></i> Ver catálogo completo
+                    </a>
+                </div>
+                <div class="vangogh-image">
+                    <img src="logo.webp" alt="Catálogo de productos">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="historia-section" id="historia">
+        <div class="container">
+            <div class="historia-grid">
+                <div class="historia-texto">
+                    <h3>Creando con el corazón</h3>
+                    <p>En cada mezcla, en cada decoración, va un pedazo de nuestra historia. Somos una familia que convirtió la pasión en profesión y el arte en nuestro sello personal.</p>
+                    <p>Detrás de cada creación hay dedicación, cariño y la certeza de que los sueños también se hacen realidad.</p>
+                    <p>Hubo miedo, hubo caídas, hubo madrugadas enteras. Los obstáculos intentaron vencernos, pero rendirnos... <strong>¡NUNCA!</strong></p>
+                </div>
+                
+                <div class="historia-fotos">
+                    <div class="foto-arte">
+                        <img src="arte.webp" alt="Arte en repostería" class="foto-img">
+                        <div class="foto-overlay">
+                            <p>Arte</p>
+                        </div>
+                    </div>
+                    <div class="foto-reposteria">
+                        <img src="pasion.webp" alt="Pasión por la repostería" class="foto-img">
+                        <div class="foto-overlay">
+                            <p>Pasión</p>
+                        </div>
+                    </div>
+                    <div class="foto-hijos">
+                        <img src="inspiracion.webp" alt="Nuestra inspiración" class="foto-img">
+                        <div class="foto-overlay">
+                            <p>Nuestra inspiración</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="historia-frase-final">
+                    "Detrás de cada creación hay dos pequeños que nos inspiran a soñar más grande."
+                </div>
+            </div> 
+        </div>
+    </section>
+
+    <section class="galeria-section" id="galeria">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Nuestros trabajos</span>
+                <h2 class="section-title">Galería <i class="fas fa-music"></i></h2>
+                <p class="section-description">Haz clic en cualquier foto para escuchar</p>
+            </div>
+            
+            <div class="galeria-grid-7">
+                <div class="galeria-item" onclick="reproducirNota(1)">
+                    <img src="bodas.webp" alt="Boda Iberostar" class="galeria-img">
+                    <div class="musical-note">
+                        <span class="nota-texto">Do</span>
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="galeria-overlay">
+                        <h4>Yannick & Dania 💍</h4>
+                        <p>Boda · Iberostar Selection</p>
+                    </div>
+                </div>
+                
+                <div class="galeria-item" onclick="reproducirNota(2)">
+                    <img src="xv.webp" alt="XV Coquette" class="galeria-img">
+                    <div class="musical-note">
+                        <span class="nota-texto">Re</span>
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="galeria-overlay">
+                        <h4>XV Coquette 🎀</h4>
+                        <p>Lazos, vintage y mucho glamour</p>
+                    </div>
+                </div>
+                
+                <div class="galeria-item" onclick="reproducirNota(3)">
+                    <img src="lucas.webp" alt="Cumpleaños de Lucas" class="galeria-img">
+                    <div class="musical-note">
+                        <span class="nota-texto">Mi</span>
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="galeria-overlay">
+                        <h4>Lucas 🎊</h4>
+                        <p>4 años • Nuestro pequeño tesoro</p>
+                    </div>
+                </div>
+                
+                <div class="galeria-item" onclick="reproducirNota(4)">
+                    <img src="fa.webp" alt="Sirenas" class="galeria-img">
+                    <div class="musical-note">
+                        <span class="nota-texto">Fa</span>
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="galeria-overlay">
+                        <h4>Cumple de Emily 🧜‍♀️</h4>
+                        <p>Sirenas · Hotel El Bosque</p>
+                    </div>
+                </div>
+                
+                <div class="galeria-item" onclick="reproducirNota(5)">
+                    <img src="sol.webp" alt="Un gran día" class="galeria-img">
+                    <div class="musical-note">
+                        <span class="nota-texto">Sol</span>
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="galeria-overlay">
+                        <h4>Luis & Nathaly 💒</h4>
+                        <p>Boda · El Bosque</p>
+                    </div>
+                </div>
+                
+                <div class="galeria-item" onclick="reproducirNota(6)">
+                    <img src="la.webp" alt="Brhan" class="galeria-img">
+                    <div class="musical-note">
+                        <span class="nota-texto">La</span>
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="galeria-overlay">
+                        <h4>Brhan 💙</h4>
+                        <p>Primer añito · El Sauce</p>
+                    </div>
+                </div>
+                
+                <div class="galeria-item" onclick="reproducirNota(7)">
+                    <img src="si.webp" alt="XV de ensueño" class="galeria-img">
+                    <div class="musical-note">
+                        <span class="nota-texto">Si</span>
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="galeria-overlay">
+                        <h4>XV de Ensueño 💜</h4>
+                        <p>Pastel · Mesa de dulces · El Bosque</p>
+                    </div>
+                </div>
+                
+                <div class="galeria-item" onclick="reproducirNota(1)">
+                    <img src="do.webp" alt="XV Layla" class="galeria-img">
+                    <div class="musical-note">
+                        <span class="nota-texto">Do</span>
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="galeria-overlay">
+                        <h4>Layla 🌸</h4>
+                        <p>XV primaveras · El Bosque</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section" id="inspirarme">
+        <div class="container">
+            <div class="form-header">
+                <h2><i class="fas fa-feather-alt"></i> Cuéntanos tu sueño <i class="fas fa-feather-alt"></i></h2>
+                <p>Déjanos estos detalles y te ayudaremos a crear algo único</p>
+            </div>
+            
+            <div class="form-grid">
+                <form id="inspirame-form">
+                    <div class="form-group">
+                        <label>¿Para qué es? *</label>
+                        <select id="tipo-evento" required>
+                            <option value="">Selecciona...</option>
+                            <option value="Boda">💒 Boda</option>
+                            <option value="Quinceañera">👸 Quinceañera</option>
+                            <option value="Cumpleaños infantil">🎈 Cumpleaños infantil</option>
+                            <option value="Cumpleaños adulto">🎂 Cumpleaños adulto</option>
+                            <option value="Evento corporativo">🏢 Evento corporativo</option>
+                            <option value="Solo porque sí">✨ Solo porque sí</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Fecha *</label>
+                            <input type="date" id="fecha" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Hora</label>
+                            <input type="time" id="hora">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Colores que te gustan</label>
+                        <input type="text" id="colores" placeholder="Ej: rosa, dorado, azul cielo...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-coins"></i> Presupuesto aproximado</label>
+                        <input type="text" id="presupuesto" placeholder="Sabes que te mereces un gustico...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>¿Tienes una foto de inspiración?</label>
+                        <input type="text" id="inspiracion" placeholder="Pega un enlace o descríbela">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Tu nombre *</label>
+                            <input type="text" id="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tu WhatsApp *</label>
+                            <input type="tel" id="telefono" placeholder="5xxxxxxx" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Cuéntanos más</label>
+                        <textarea id="detalles" rows="4" placeholder="Temática, sabores que te gustan, número de personas..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="contacto-section" id="contacto">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Hablemos</span>
+                <h2 class="section-title">Contacto <i class="fas fa-envelope"></i></h2>
+            </div>
+            
+            <div class="contacto-info">
+                <div class="contacto-whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    <a href="https://wa.me/5356552059">+53 5 6552059</a>
+                </div>
+                <div class="contacto-redes">
+                    <a href="https://www.facebook.com/buttercioccolato" target="_blank"><i class="fab fa-facebook"></i> @buttercioccolato</a>
+                    <a href="https://www.instagram.com/cerchio_di_cioccolato" target="_blank"><i class="fab fa-instagram"></i> @cerchio_di_cioccolato</a>
+                </div>
+                <p class="contacto-horario">
+                    <i class="fas fa-clock"></i> Lunes a Viernes | Holguín, Cuba
+                </p>
+                <p class="contacto-stats">
+                    <span>5,935</span> en Facebook • <span>4,036</span> en Instagram
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="footer-logo-circle">
+                        <img src="logo.webp" alt="Cerchio di Cioccolato" class="footer-logo-img">
+                    </div>
+                    <div>
+                        <h3>Cerchio di Cioccolato</h3>
+                        <p>Dulcería Gourmet</p>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/buttercioccolato" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/cerchio_di_cioccolato" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/5356552059" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Cerchio di Cioccolato - <a href="catalogo.html" style="color: var(--dorado);">Ver catálogo</a></p>
+                <p>Holguín, Cuba</p>
+            </div>
+            <div class="creditos-profesionales">
+                <div class="container">
+                    <div class="creditos-contenido">
+                        <span class="creditos-texto">
+                            Página creada por &nbsp;
+                            <a href="https://sromlet.github.io" target="_blank" class="creditos-link">
+                                <span class="sr">SR</span>omlet
+                            </a>
+                        </span>
+                        <span class="creditos-separador"></span>
+                        <span class="creditos-frase">Diseñando vitrinas virtuales para sabores inolvidables</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="catalogo.html" class="float-catalogo" title="Ver catálogo">
+        <i class="fas fa-book-open"></i>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
