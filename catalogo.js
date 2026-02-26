@@ -507,20 +507,6 @@
         nota: "Precio en USD. Imágenes referenciales."
     },
     {
-        id: 37,
-        nombre: "Fondant 3 Pisos (100 porciones)",
-        descripcion: "Cobertura interior de ganache de chocolate y exterior de fondant. Masa y rellenos de vainilla o chocolate. Decoración personalizada.",
-        precio: 180,
-        moneda: "USD",
-        precioTexto: "180 USD",
-        categoria: "personalizados",
-        subcategoria: "fondant",
-        imagen: "fondant100.webp",
-        requiereAnticipo: true,
-        porcentajeAnticipo: 30,
-        nota: "Precio en USD. Imágenes referenciales."
-    },
-    {
         id: 53,
         nombre: "Fondant 4 Pisos (120 porciones)",
         descripcion: "Cobertura interior de ganache de chocolate y exterior de fondant. Masa y rellenos de vainilla o chocolate. Decoración personalizada.",
@@ -544,20 +530,6 @@
         categoria: "personalizados",
         subcategoria: "fondant",
         imagen: "fondant150.webp",
-        requiereAnticipo: true,
-        porcentajeAnticipo: 30,
-        nota: "Precio en USD. Imágenes referenciales."
-    },
-    {
-        id: 55,
-        nombre: "Fondant 5 Pisos (200 porciones)",
-        descripcion: "Cobertura interior de ganache de chocolate y exterior de fondant. Masa y rellenos de vainilla o chocolate. Decoración personalizada.",
-        precio: 300,
-        moneda: "USD",
-        precioTexto: "300 USD",
-        categoria: "personalizados",
-        subcategoria: "fondant",
-        imagen: "fondant200.webp",
         requiereAnticipo: true,
         porcentajeAnticipo: 30,
         nota: "Precio en USD. Imágenes referenciales."
@@ -604,10 +576,10 @@
     {
         id: 41,
         nombre: "Dulces de Vainilla",
-        descripcion: "Docena - 12 unidades. Imagen referencial.",
+        descripcion: "Docena - 12 unidades. Crema de mantequilla o mousse según disponibilidad. Imagen referencial.",
         precio: 2000,
         moneda: "CUP",
-        precioTexto: "2,000 CUP",
+        precioTexto: "2,500 CUP",
         categoria: "dulces",
         subcategoria: null,
         imagen: "dulcevainilla.webp",
