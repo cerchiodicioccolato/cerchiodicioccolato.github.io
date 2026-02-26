@@ -431,7 +431,7 @@
         precioTexto: "60,000 CUP",
         categoria: "personalizados",
         subcategoria: "6pisos",
-        imagen: "seispisos2.webp",
+        imagen: "si.webp",
         requiereAnticipo: true,
         porcentajeAnticipo: 30,
         nota: "Imágenes referenciales. Traslado incluido en el Centro."
@@ -487,7 +487,7 @@
         precioTexto: "100 USD",
         categoria: "personalizados",
         subcategoria: "fondant",
-        imagen: "fondant60.webp",
+        imagen: "fondant50.webp",
         requiereAnticipo: true,
         porcentajeAnticipo: 30,
         nota: "Precio en USD. Imágenes referenciales."
@@ -515,7 +515,7 @@
         precioTexto: "200 USD",
         categoria: "personalizados",
         subcategoria: "fondant",
-        imagen: "fondant120.webp",
+        imagen: "fondant100.webp",
         requiereAnticipo: true,
         porcentajeAnticipo: 30,
         nota: "Precio en USD. Imágenes referenciales."
@@ -529,7 +529,7 @@
         precioTexto: "250 USD",
         categoria: "personalizados",
         subcategoria: "fondant",
-        imagen: "fondant150.webp",
+        imagen: "fondant120.webp",
         requiereAnticipo: true,
         porcentajeAnticipo: 30,
         nota: "Precio en USD. Imágenes referenciales."
