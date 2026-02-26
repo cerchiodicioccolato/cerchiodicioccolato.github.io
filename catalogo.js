@@ -480,7 +480,7 @@
     },
     {
         id: 35,
-        nombre: "Fondant 2 Pisos (60 porciones)",
+        nombre: "Fondant 3 Pisos (50 porciones)",
         descripcion: "Cobertura interior de ganache de chocolate y exterior de fondant. Masa y rellenos de vainilla o chocolate. Decoración personalizada.",
         precio: 100,
         moneda: "USD",
@@ -494,7 +494,7 @@
     },
     {
         id: 36,
-        nombre: "Fondant 2 Pisos (80 porciones)",
+        nombre: "Fondant 4 Pisos (80 porciones)",
         descripcion: "Cobertura interior de ganache de chocolate y exterior de fondant. Masa y rellenos de vainilla o chocolate. Decoración personalizada.",
         precio: 150,
         moneda: "USD",
@@ -508,7 +508,7 @@
     },
     {
         id: 53,
-        nombre: "Fondant 4 Pisos (120 porciones)",
+        nombre: "Fondant 5 Pisos (100 porciones)",
         descripcion: "Cobertura interior de ganache de chocolate y exterior de fondant. Masa y rellenos de vainilla o chocolate. Decoración personalizada.",
         precio: 200,
         moneda: "USD",
@@ -522,7 +522,7 @@
     },
     {
         id: 54,
-        nombre: "Fondant 5 Pisos (150 porciones)",
+        nombre: "Fondant 5 Pisos (120 porciones)",
         descripcion: "Cobertura interior de ganache de chocolate y exterior de fondant. Masa y rellenos de vainilla o chocolate. Decoración personalizada.",
         precio: 250,
         moneda: "USD",
