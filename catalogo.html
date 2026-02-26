@@ -1548,7 +1548,7 @@
                 <div class="container">
                     <div class="creditos-contenido">
                         <span class="creditos-texto">
-                            Página creada por &nbsp;
+                            Página creada por:&nbsp;
                             <a href="https://sromlet.github.io" target="_blank" class="creditos-link">
                                 <span class="sr"> SR</span>omlet
                             </a>
@@ -1564,54 +1564,112 @@
     <script src="catalogo.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const btnAclaraciones = document.getElementById('btnAclaraciones');
+// Toggle para mostrar/ocultar aclaraciones desde el botón principal
+document.addEventListener('DOMContentLoaded', function() {
+    const btnAclaraciones = document.getElementById('btnAclaraciones');
+    
+    if (btnAclaraciones) {
+        btnAclaraciones.addEventListener('click', function() {
+            const contenido = document.getElementById('contenidoAclaraciones');
+            const flecha = document.getElementById('flechaAclaraciones');
             
-            if (btnAclaraciones) {
-                btnAclaraciones.addEventListener('click', function() {
-                    const contenido = document.getElementById('contenidoAclaraciones');
-                    const flecha = document.getElementById('flechaAclaraciones');
+            if (contenido.style.display === 'none' || contenido.style.display === '') {
+                contenido.style.display = 'block';
+                this.classList.add('active');
+                
+                setTimeout(() => {
+                    const header = document.querySelector('.header');
+                    const headerHeight = header ? header.offsetHeight : 100;
+                    const rect = document.getElementById('aclaraciones-section').getBoundingClientRect();
+                    const scrollPosition = window.scrollY + rect.top - headerHeight - 20;
                     
-                    if (contenido.style.display === 'none' || contenido.style.display === '') {
-                        contenido.style.display = 'block';
-                        this.classList.add('active');
-                        
-                        setTimeout(() => {
-                            contenido.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }, 100);
-                    } else {
-                        contenido.style.display = 'none';
-                        this.classList.remove('active');
-                    }
-                });
+                    window.scrollTo({
+                        top: scrollPosition,
+                        behavior: 'smooth'
+                    });
+                }, 150);
+            } else {
+                contenido.style.display = 'none';
+                this.classList.remove('active');
             }
         });
-    </script>
-    
+    }
+});
+</script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.location.hash === '#aclaraciones-section') {
-                const seccion = document.getElementById('aclaraciones-section');
-                const contenidoAclaraciones = document.getElementById('contenidoAclaraciones');
+// Hacer que el botón flotante de información también abra las aclaraciones
+document.addEventListener('DOMContentLoaded', function() {
+    const btnFlotante = document.querySelector('.info-flotante');
+    
+    if (btnFlotante) {
+        btnFlotante.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const seccion = document.getElementById('aclaraciones-section');
+            const contenido = document.getElementById('contenidoAclaraciones');
+            const btnAclaraciones = document.getElementById('btnAclaraciones');
+            
+            if (seccion && contenido) {
+                contenido.style.display = 'block';
                 
-                if (seccion && contenidoAclaraciones) {
-                    contenidoAclaraciones.style.display = 'block';
+                if (btnAclaraciones) {
+                    btnAclaraciones.classList.add('active');
+                }
+                
+                setTimeout(() => {
+                    const header = document.querySelector('.header');
+                    const headerHeight = header ? header.offsetHeight : 100;
+                    const rect = seccion.getBoundingClientRect();
+                    const scrollPosition = window.scrollY + rect.top - headerHeight - 20;
                     
-                    const btn = document.getElementById('btnAclaraciones');
-                    if (btn) btn.classList.add('active');
+                    window.scrollTo({
+                        top: scrollPosition,
+                        behavior: 'smooth'
+                    });
                     
                     seccion.classList.add('destacado-activo');
                     
                     setTimeout(() => {
-                        seccion.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 100);
-                    
-                    setTimeout(() => {
                         seccion.classList.remove('destacado-activo');
-                    }, 3000);
-                }
+                    }, 2000);
+                }, 150);
             }
         });
-    </script>
+    }
+});
+</script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (window.location.hash === '#aclaraciones-section') {
+        const seccion = document.getElementById('aclaraciones-section');
+        const contenidoAclaraciones = document.getElementById('contenidoAclaraciones');
+        
+        if (seccion && contenidoAclaraciones) {
+            contenidoAclaraciones.style.display = 'block';
+            
+            const btn = document.getElementById('btnAclaraciones');
+            if (btn) btn.classList.add('active');
+            
+            seccion.classList.add('destacado-activo');
+            
+            setTimeout(() => {
+                const header = document.querySelector('.header');
+                const headerHeight = header ? header.offsetHeight : 100;
+                const rect = seccion.getBoundingClientRect();
+                const scrollPosition = window.scrollY + rect.top - headerHeight - 20;
+                
+                window.scrollTo({
+                    top: scrollPosition,
+                    behavior: 'smooth'
+                });
+            }, 150);
+            
+            setTimeout(() => {
+                seccion.classList.remove('destacado-activo');
+            }, 3000);
+        }
+    }
+});
+</script>
 </body>
 </html>
