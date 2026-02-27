@@ -866,6 +866,17 @@ function cargarProductos(categoria = 'todos', subcategoria = null) {
         `;
         productosContainer.appendChild(card);
     });
+
+    if (categoria === 'personalizados' && subcategoria === 'fondant') {
+    const notaFondant = document.createElement('div');
+    notaFondant.className = 'nota-categoria';
+    notaFondant.innerHTML = `
+        <div class="nota-fondant">
+            <p>✨ Si deseas un diseño específico o una cantidad de personas diferente a las indicadas, <strong>contáctanos para cotizarlo especialmente para ti</strong>.</p>
+        </div>
+    `;
+    productosContainer.appendChild(notaFondant);
+}
     
     document.querySelectorAll('.btn-interes').forEach(btn => {
         btn.addEventListener('click', function(e) {
