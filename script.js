@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const header = document.getElementById('header');
     const navbar = document.querySelector('.navbar');
     
@@ -123,6 +123,7 @@
 });
 
 let audioContext = null;
+let activeOscillators = []; // Para mantener track de los sonidos activos
 
 function iniciarAudio() {
     if (!audioContext) {
@@ -134,15 +135,25 @@ function iniciarAudio() {
     return audioContext;
 }
 
-function reproducirNota(nota) {
+function detenerTodosLosSonidos() {
+    activeOscillators.forEach(item => {
+        try {
+            item.osc.stop();
+            item.gain.disconnect();
+        } catch(e) {}
+    });
+    activeOscillators = [];
+}
+
+function reproducirNota(nota, esRefuerzo = false) {
     const frecuencias = {
-        1: 261.63,
-        2: 293.66,
-        3: 329.63,
-        4: 349.23,
-        5: 392.00,
-        6: 440.00,
-        7: 493.88
+        1: 261.63,  // DO
+        2: 293.66,  // RE
+        3: 329.63,  // MI
+        4: 349.23,  // FA
+        5: 392.00,  // SOL
+        6: 440.00,  // LA
+        7: 493.88   // SI
     };
     
     const frecuencia = frecuencias[nota];
@@ -152,77 +163,78 @@ function reproducirNota(nota) {
         const audioCtx = iniciarAudio();
         const ahora = audioCtx.currentTime;
         
+        // Detener sonidos anteriores para evitar acumulación
+        detenerTodosLosSonidos();
+        
+        // Configuración según si es refuerzo o no
+        const volumenBase = esRefuerzo ? 0.5 : 0.35;
+        const volumenArmonico = esRefuerzo ? 0.3 : 0.15;
+        const duracion = esRefuerzo ? 1.8 : 1.3;
+        
+        // Oscilador fundamental (nota base)
         const oscFundamental = audioCtx.createOscillator();
         const gainFundamental = audioCtx.createGain();
-        
-        oscFundamental.type = 'triangle';
+        oscFundamental.type = 'sine';
         oscFundamental.frequency.value = frecuencia;
         
+        // Oscilador armónico (octava superior) - más brillante
+        const oscArmonico = audioCtx.createOscillator();
+        const gainArmonico = audioCtx.createGain();
+        oscArmonico.type = 'sine';
+        oscArmonico.frequency.value = frecuencia * 2;
+        
+        // Conectar
         oscFundamental.connect(gainFundamental);
+        oscArmonico.connect(gainArmonico);
         gainFundamental.connect(audioCtx.destination);
+        gainArmonico.connect(audioCtx.destination);
         
-        const oscArmonico1 = audioCtx.createOscillator();
-        const gainArmonico1 = audioCtx.createGain();
+        // Guardar para poder detener después
+        activeOscillators.push({ osc: oscFundamental, gain: gainFundamental });
+        activeOscillators.push({ osc: oscArmonico, gain: gainArmonico });
         
-        oscArmonico1.type = 'sine';
-        oscArmonico1.frequency.value = frecuencia * 2;
-        
-        oscArmonico1.connect(gainArmonico1);
-        gainArmonico1.connect(audioCtx.destination);
-        
-        const oscArmonico2 = audioCtx.createOscillator();
-        const gainArmonico2 = audioCtx.createGain();
-        
-        oscArmonico2.type = 'sine';
-        oscArmonico2.frequency.value = frecuencia * 1.5;
-        
-        oscArmonico2.connect(gainArmonico2);
-        gainArmonico2.connect(audioCtx.destination);
-        
-        const bufferSize = 4096;
-        const noiseNode = audioCtx.createScriptProcessor(bufferSize, 1, 1);
-        const gainNoise = audioCtx.createGain();
-        
-        noiseNode.onaudioprocess = function(e) {
-            const output = e.outputBuffer.getChannelData(0);
-            for (let i = 0; i < bufferSize; i++) {
-                output[i] = Math.random() * 2 - 1;
-            }
-        };
-        
-        noiseNode.connect(gainNoise);
-        gainNoise.connect(audioCtx.destination);
-        
+        // Envelope para la fundamental
         gainFundamental.gain.setValueAtTime(0, ahora);
-        gainFundamental.gain.linearRampToValueAtTime(0.4, ahora + 0.01);
-        gainFundamental.gain.exponentialRampToValueAtTime(0.001, ahora + 1.5);
+        gainFundamental.gain.linearRampToValueAtTime(volumenBase, ahora + 0.01);
+        gainFundamental.gain.exponentialRampToValueAtTime(0.001, ahora + duracion);
         
-        gainArmonico1.gain.setValueAtTime(0, ahora);
-        gainArmonico1.gain.linearRampToValueAtTime(0.2, ahora + 0.02);
-        gainArmonico1.gain.exponentialRampToValueAtTime(0.001, ahora + 1.2);
+        // Envelope para el armónico
+        gainArmonico.gain.setValueAtTime(0, ahora);
+        gainArmonico.gain.linearRampToValueAtTime(volumenArmonico, ahora + 0.02);
+        gainArmonico.gain.exponentialRampToValueAtTime(0.001, ahora + duracion - 0.2);
         
-        gainArmonico2.gain.setValueAtTime(0, ahora);
-        gainArmonico2.gain.linearRampToValueAtTime(0.1, ahora + 0.03);
-        gainArmonico2.gain.exponentialRampToValueAtTime(0.001, ahora + 1.0);
+        // Si es refuerzo, añadir un tercer armónico más brillante
+        if (esRefuerzo) {
+            const oscTercera = audioCtx.createOscillator();
+            const gainTercera = audioCtx.createGain();
+            oscTercera.type = 'sine';
+            oscTercera.frequency.value = frecuencia * 1.5;
+            
+            oscTercera.connect(gainTercera);
+            gainTercera.connect(audioCtx.destination);
+            
+            activeOscillators.push({ osc: oscTercera, gain: gainTercera });
+            
+            gainTercera.gain.setValueAtTime(0, ahora);
+            gainTercera.gain.linearRampToValueAtTime(0.2, ahora + 0.02);
+            gainTercera.gain.exponentialRampToValueAtTime(0.001, ahora + duracion - 0.3);
+            
+            oscTercera.start();
+            oscTercera.stop(ahora + duracion - 0.3);
+        }
         
-        gainNoise.gain.setValueAtTime(0.02, ahora);
-        gainNoise.gain.exponentialRampToValueAtTime(0.001, ahora + 0.1);
-        
+        // Iniciar osciladores
         oscFundamental.start();
-        oscArmonico1.start();
-        oscArmonico2.start();
-        noiseNode.start ? noiseNode.start() : null;
+        oscArmonico.start();
+        oscFundamental.stop(ahora + duracion);
+        oscArmonico.stop(ahora + duracion - 0.2);
         
-        oscFundamental.stop(ahora + 1.5);
-        oscArmonico1.stop(ahora + 1.2);
-        oscArmonico2.stop(ahora + 1.0);
-        noiseNode.stop ? noiseNode.stop(ahora + 0.15) : null;
-        
+        // Limpiar del array después de que terminen
         setTimeout(() => {
-            try {
-                noiseNode.disconnect();
-            } catch(e) {}
-        }, 200);
+            activeOscillators = activeOscillators.filter(item => 
+                item.osc !== oscFundamental && item.osc !== oscArmonico
+            );
+        }, duracion * 1000);
         
     } catch (error) {
         console.log("Error al reproducir nota:", error);
@@ -317,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: var(--chocolate, #5C3E2E);
+            background: #5C3E2E;
             color: white;
             padding: 12px 24px;
             border-radius: 40px;
@@ -325,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function() {
             font-size: 0.9rem;
             z-index: 9999;
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            border-left: 4px solid var(--dorado, #C6A15B);
+            border-left: 4px solid #C6A15B;
             opacity: 0;
             transform: translateX(30px);
             transition: all 0.3s ease;
